@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <Authors>jdauie</Authors>
+    <Company />
+    <Product />
+    <Description>Console command dispatcher</Description>
+    <PackageProjectUrl>https://github.com/jdauie/Jacere.ConsoleCommand</PackageProjectUrl>
+    <RepositoryUrl></RepositoryUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Copyright>Copyright 2017</Copyright>
+    <PackageTags>console,command</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
