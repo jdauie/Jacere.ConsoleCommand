@@ -67,10 +67,22 @@ namespace Jacere.ConsoleCommand
                 args = args.Skip(1).ToList();
             }
 
+            if (commandName == "help" && args.Any())
+            {
+                var helpCommandInfo = commands
+                    .SingleOrDefault(x => string.Equals(x.Name, args.First(), StringComparison.OrdinalIgnoreCase));
+
+                if (helpCommandInfo != null)
+                {
+                    PrintUsage(helpCommandInfo);
+                    return;
+                }
+            }
+
             var commandInfo = commands
                 .SingleOrDefault(x => string.Equals(x.Name, commandName, StringComparison.OrdinalIgnoreCase));
 
-            if (commandInfo == null || commandName == "help")
+            if (commandInfo == null)
             {
                 PrintCommands(description, commands);
                 return;
@@ -127,6 +139,8 @@ namespace Jacere.ConsoleCommand
             }
 
             PrintLines(lines, CommandIndent, CommandIndent, DescriptionIndent);
+
+            Console.WriteLine();
         }
 
         private static void PrintCommands(string description, ICollection<CommandInfo> commands)
