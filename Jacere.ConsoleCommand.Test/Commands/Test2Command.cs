@@ -26,9 +26,9 @@ namespace Jacere.ConsoleCommand.Test.Commands
         ")]
         public string Arg5 { get; set; }
 
-        public async Task Execute()
+        public Task Execute()
         {
-            
+            return Task.CompletedTask;
         }
     }
 }

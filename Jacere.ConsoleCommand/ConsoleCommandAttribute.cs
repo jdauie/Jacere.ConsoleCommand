@@ -5,12 +5,11 @@ namespace Jacere.ConsoleCommand
     [AttributeUsage(AttributeTargets.Class)]
     public class ConsoleCommandAttribute : Attribute
     {
-        public ConsoleCommandAttribute(string name = null, string shortDescription = null, string longDescription = null, bool admin = false)
+        public ConsoleCommandAttribute(string name = null, string shortDescription = null, string longDescription = null)
         {
             Name = name;
             ShortDescription = shortDescription;
             LongDescription = longDescription;
-            Admin = admin;
         }
 
         public string Name { get; }
@@ -18,7 +17,5 @@ namespace Jacere.ConsoleCommand
         public string ShortDescription { get; }
 
         public string LongDescription { get; }
-
-        public bool Admin { get; }
     }
 }

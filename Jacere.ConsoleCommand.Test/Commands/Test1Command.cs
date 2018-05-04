@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Jacere.ConsoleCommand.Windows;
 
 namespace Jacere.ConsoleCommand.Test.Commands
 {
     [ConsoleCommand("Test1")]
+    [KeepAlive]
+    [RunAsAdmin]
     public class Test1Command : IConsoleCommand
     {
         [ConsoleCommandOption("arg1", "a", true, "short description")]
@@ -26,9 +29,9 @@ namespace Jacere.ConsoleCommand.Test.Commands
         ")]
         public string Arg5 { get; set; }
 
-        public async Task Execute()
+        public Task Execute()
         {
-            
+            return Task.CompletedTask;
         }
     }
 }
