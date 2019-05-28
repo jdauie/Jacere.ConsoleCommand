@@ -26,6 +26,9 @@ namespace Jacere.ConsoleCommand.Test.Commands
         ")]
         public string Arg5 { get; set; }
 
+        [ConsoleCommandOption("arg6")]
+        public static bool Arg6 { get; set; }
+
         public Task Execute()
         {
             return Task.CompletedTask;

@@ -25,7 +25,14 @@ namespace Jacere.ConsoleCommand
         public void SetValue(object instance, string value)
         {
             var underlyingPropType = UnderlyingType;
-            
+
+            var isStatic = Property.GetGetMethod(true).IsStatic;
+
+            if (isStatic)
+            {
+                instance = null;
+            }
+
             if (underlyingPropType == typeof(bool))
             {
                 Property.SetValue(instance, true);

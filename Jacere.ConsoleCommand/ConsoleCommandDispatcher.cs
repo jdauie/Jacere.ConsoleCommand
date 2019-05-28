@@ -15,7 +15,7 @@ namespace Jacere.ConsoleCommand
         {
             await DispatchCommand(assemblies.SelectMany(x => x.GetTypes()), commandName, description);
         }
-        
+
         private static async Task DispatchCommand(IEnumerable<Type> types, string commandName, string description = null)
         {
             var commands = types
@@ -34,7 +34,7 @@ namespace Jacere.ConsoleCommand
             {
                 throw new Exception($"There are no valid commands. Commands must implement {nameof(IConsoleCommand)}, have a default constructor, and have a single {nameof(ConsoleCommandAttribute)}.");
             }
-            
+
             var duplicateCommands = commands.GroupBy(x => x.Name)
                 .Select(x => x.ToList())
                 .Where(x => x.Count > 1)
@@ -104,7 +104,7 @@ namespace Jacere.ConsoleCommand
         private static void PrintUsage(CommandInfo command)
         {
             var options = GetOptions(command.Type);
-            
+
             Console.WriteLine();
 
             if (!string.IsNullOrEmpty(command.Attribute.LongDescription))
@@ -170,7 +170,7 @@ namespace Jacere.ConsoleCommand
             });
 
             PrintLines(lines, CommandIndent, DescriptionIndent);
-            
+
             Console.WriteLine();
         }
 
@@ -319,7 +319,7 @@ namespace Jacere.ConsoleCommand
 
         private static ICollection<CommandOptionInfo> GetOptions(Type target)
         {
-            var props = target.GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+            var props = target.GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static);
             var options = new List<CommandOptionInfo>();
 
             foreach (var prop in props)
